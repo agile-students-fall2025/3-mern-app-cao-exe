@@ -7,6 +7,7 @@ const mongoose = require('mongoose')
 const app = express() // instantiate an Express object
 app.use(morgan('dev', { skip: (req, res) => process.env.NODE_ENV === 'test' })) // log all incoming requests, except when in unit test mode.  morgan has a few logging default styles - dev is a nice concise color-coded style
 app.use(cors()) // allow cross-origin resource sharing
+app.use("/images",express.static('public')) // serve static files from the public/ folder
 
 // use express's builtin body-parser middleware to parse any data included in a request
 app.use(express.json()) // decode JSON-formatted incoming POST data
@@ -79,13 +80,14 @@ app.post('/messages/save', async (req, res) => {
 })
 
 // a route to get about-me information
-app.get('/about-us', async (req, res) => {
+app.get('/api/about', async (req, res) => {
   res.json({
     title: "About Us",
+    name: "Terry Cao",
     intro: "Terry Cao is a senior at New York University studying Computer Science and Psychology. He is passionate about Software Development, Industrial/Organizational Psychology, Human-Computer Interaction, and the use of Artificial Intelligence in the workplace. He is currently an intern at Organisation Solutions, a Industrial/Organizational Psychology consulting firm, working on AI-driven solutions.",
     middle: "Terry is from Port Richey, Florida and now based in New York City. In his free time, Terry enjoys exploring the city, trying out new restaurants, playing games, listening to music, and spending time with friends and family.",
     end: "Feel free to reach out to Terry via email at terrycao [at] nyu [dot] edu",
-    image: "/images/about-us-image.jpg"
+    image: "http://localhost:5002/images/TerryCao.jpg"
   })
 })
 // export the express app we created to make it available to other modules
