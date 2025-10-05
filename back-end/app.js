@@ -78,5 +78,15 @@ app.post('/messages/save', async (req, res) => {
   }
 })
 
+// a route to get about-me information
+app.get('/about-us', async (req, res) => {
+  res.json({
+    title: "About Us",
+    intro: "Terry Cao is a senior at New York University studying Computer Science and Psychology. He is passionate about Software Development, Industrial/Organizational Psychology, Human-Computer Interaction, and the use of Artificial Intelligence in the workplace. He is currently an intern at Organisation Solutions, a Industrial/Organizational Psychology consulting firm, working on AI-driven solutions.",
+    middle: "Terry is from Port Richey, Florida and now based in New York City. In his free time, Terry enjoys exploring the city, trying out new restaurants, playing games, listening to music, and spending time with friends and family.",
+    end: "Feel free to reach out to Terry via email at terrycao [at] nyu [dot] edu",
+    image: "/images/about-us-image.jpg"
+  })
+})
 // export the express app we created to make it available to other modules
 module.exports = app // CommonJS export style!
